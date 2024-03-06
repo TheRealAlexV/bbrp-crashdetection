@@ -90,10 +90,10 @@ Citizen.CreateThread(function()
 
             -- Triggers the crash effect based on damage thresholds
             if currentDamage ~= oldBodyDamage then
-                print("crash") -- Debug print
+                note("crash") -- Debug print
                 if not effect and currentDamage < oldBodyDamage then
-                    print("effect") -- Debug print
-                    print(oldBodyDamage - currentDamage) -- Debug print
+                    note(effect) -- Debug print
+                    note(oldBodyDamage - currentDamage) -- Debug print
                     -- Checks against various damage thresholds to determine the level of the crash effect, worst crash to least worse
                     if (oldBodyDamage - currentDamage) >= Config.BlackoutDamageRequiredLevel5 or
                     (oldSpeed - currentSpeed)  >= Config.BlackoutSpeedRequiredLevel5 then
