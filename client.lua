@@ -90,16 +90,20 @@ Citizen.CreateThread(function()
 
             -- Triggers the crash effect based on damage thresholds
             if currentDamage ~= oldBodyDamage then
-                note("crash") -- Debug print
+                print("crash") -- Debug print
                 if not effect and currentDamage < oldBodyDamage then
-                    note(effect) -- Debug print
-                    note(oldBodyDamage - currentDamage) -- Debug print
+                    print("effect") -- Debug print
+                    print(oldBodyDamage - currentDamage) -- Debug print
+                    
                     -- Checks against various damage thresholds to determine the level of the crash effect, worst crash to least worse
+                    
                     if (oldBodyDamage - currentDamage) >= Config.BlackoutDamageRequiredLevel5 or
                     (oldSpeed - currentSpeed)  >= Config.BlackoutSpeedRequiredLevel5 then
                         oldBodyDamage = currentDamage
                         TriggerEvent("crashEffect", Config.EffectTimeLevel5, 5)
                         TriggerServerEvent('triggerPanicAndLogCall', pos.x, pos.y, pos.z)
+                        note(effect) -- Debug print
+                        note(oldBodyDamage - currentDamage) -- Debug print
                         
                         -- Additional thresholds for other levels of crash effects
                     elseif (oldBodyDamage - currentDamage) >= Config.BlackoutDamageRequiredLevel4 or
@@ -107,22 +111,31 @@ Citizen.CreateThread(function()
                         TriggerEvent("crashEffect", Config.EffectTimeLevel4, 4)
                         TriggerServerEvent('triggerPanicAndLogCall', pos.x, pos.y, pos.z)
                         oldBodyDamage = currentDamage
+                        note(effect) -- Debug print
+                        note(oldBodyDamage - currentDamage) -- Debug print
                         
                         -- And so on for other levels...
                     elseif (oldBodyDamage - currentDamage) >= Config.BlackoutDamageRequiredLevel3 or
                     (oldSpeed - currentSpeed)  >= Config.BlackoutSpeedRequiredLevel3 then   
                         oldBodyDamage = currentDamage
                         TriggerEvent("crashEffect", Config.EffectTimeLevel3, 3)
+                        note(effect) -- Debug print
+                        note(oldBodyDamage - currentDamage) -- Debug print
                         
                     elseif (oldBodyDamage - currentDamage) >= Config.BlackoutDamageRequiredLevel2 or
                     (oldSpeed - currentSpeed)  >= Config.BlackoutSpeedRequiredLevel2 then
                         oldBodyDamage = currentDamage
                         TriggerEvent("crashEffect", Config.EffectTimeLevel2, 2)
+                        note(effect) -- Debug print
+                        note(oldBodyDamage - currentDamage) -- Debug print
 
                     elseif (oldBodyDamage - currentDamage) >= Config.BlackoutDamageRequiredLevel1 or
                     (oldSpeed - currentSpeed)  >= Config.BlackoutSpeedRequiredLevel1 then
                         oldBodyDamage = currentDamage
                         TriggerEvent("crashEffect", Config.EffectTimeLevel1, 1)
+                        note(effect) -- Debug print
+                        note(oldBodyDamage - currentDamage) -- Debug print
+
                     end
                 end
             end
